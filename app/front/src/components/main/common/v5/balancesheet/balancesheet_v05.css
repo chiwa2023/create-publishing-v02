@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+/* 
+ * 政治資金収支報告書（様式V05）共通スタイル
+ */
+
+/* 印刷用紙設定（A4横、ブラウザ標準のヘッダー・フッター（URL・ページ数等）を用紙端から消去） */
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+/* 最上位divタグ: A4横（297mm）で一般的なプリンターの余白を考慮し、文字切れが起きない固定幅 */
+div {
+  width: 270mm;
+  box-sizing: border-box;
+  margin: 10mm auto;
+}
+
+/* テーブル: 親タグにぎりぎり収まる固定幅 */
+table {
+  width: 270mm;
+  table-layout: fixed;
+  border-collapse: collapse;
+  box-sizing: border-box;
+}
+
+/* thタグの背景色を消去 */
+th {
+  background-color: transparent;
+  background: none;
+}
+
+/* th, tdタグ: 幅に収まらない場合は改行せずカット */
+th,
+td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  box-sizing: border-box;
+}
+
+/* セル内容が &nbsp; 等の空白セル用クラス（枠線を非表示） */
+.blank-cell,
+.empty-cell,
+.no-border,
+.border-none {
+  border: none !important;
+}
+
+/* 金額の右詰め */
+.kingaku,
+.amount {
+  text-align: right;
+}
+
+/* 帳票共通の金額列（3列目）フォールバック */
+table tbody tr td:nth-child(3) {
+  text-align: right;
+}
+
+/* 印刷制御: 画面上では表示、印刷時には非表示 */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
